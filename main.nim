@@ -25,6 +25,11 @@ proc scrapeCatbox(fileEnding: string): string =
 
 # valid urls will be printed to stdout
 while true:
-    var response: string = scrapeCatbox(".png")
-    if response != "":
-        echo response
+    try:
+        var response: string = scrapeCatbox(".png")
+        if response != "":
+          echo response
+    except ProtocolError as e:
+        echo e.msg
+        continue
+    
